@@ -44,6 +44,13 @@ steps:
     command: 'restore'
     projects: '**/*.csproj'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects:  '**/*.csproj'
+    arguments: '--no-build --configuration ${buildConfiguration}'
+    testRunTitle: 'dotnet-test --nobuild '
+
 - template: templates/build.yml
   parameters:
     buildConfiguration: 'Debug'
@@ -51,7 +58,8 @@ steps:
 - template: templates/build.yml
   parameters:
     buildConfiguration: 'Release'
-  
+
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   condition: succeeded()
