@@ -6,6 +6,9 @@
 trigger:
 - '*'
 
+variables:
+  buildConfiguration: 'Release'
+  
 pool:
   vmImage: 'ubuntu-20.04'
   demands:
